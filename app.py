@@ -7,10 +7,13 @@ app = Flask(__name__)
 
 @app.route('/ocr', methods=['POST'])
 def ocr():
-    file = request.files['image']
-    image = Image.open(io.BytesIO(file.read()))
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image provided'}), 400
+
+    image_file = request.files['image']
+    image = Image.open(io.BytesIO(image_file.read()))
     text = pytesseract.image_to_string(image)
     return jsonify({'text': text})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
