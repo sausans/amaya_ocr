@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Download the tessdata directory
+echo "Downloading tessdata directory..."
+mkdir -p /app/tessdata
+curl -L https://github.com/sausans/amaya_ocr/archive/refs/heads/main.zip -o tessdata.zip
+unzip -q tessdata.zip
+mv amaya_ocr-main/tessdata/* /app/tessdata/
+rm -rf amaya_ocr-main tessdata.zip
+
+# Set the TESSDATA_PREFIX environment variable
+export TESSDATA_PREFIX=/app/tessdata
