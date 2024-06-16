@@ -11,6 +11,7 @@ os.environ["TESSDATA_PREFIX"] = "/usr/share/tesseract-ocr/4.00/tessdata/"
 
 @app.route('/ocr', methods=['POST'])
 def ocr():
+    print("Hello")
     if 'image' not in request.files:
         return jsonify({"error": "No image provided"}), 400
 
