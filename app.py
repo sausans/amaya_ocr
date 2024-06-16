@@ -7,7 +7,7 @@ import io
 app = Flask(__name__)
 
 # Set the TESSDATA_PREFIX environment variable
-os.environ["TESSDATA_PREFIX"] = "/usr/share/tesseract-ocr/4.00/"
+os.environ["TESSDATA_PREFIX"] = "/usr/share/tesseract-ocr/4.00/tessdata/"
 
 @app.route('/ocr', methods=['POST'])
 def ocr():
